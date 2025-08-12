@@ -1,0 +1,202 @@
+/* Notepad Container */
+.xp-notepad {
+  display: flex;
+  position: relative;
+  background: white;
+  border: 2px inset #ece9d8;
+  font-family: "Lucida Console", monospace;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Line Numbers */
+.xp-notepad-line-numbers {
+  background: #f0f0f0;
+  border-right: 1px solid #c0c0c0;
+  padding: 8px 4px 8px 8px;
+  text-align: right;
+  user-select: none;
+  overflow: hidden;
+  flex-shrink: 0;
+  line-height: 1.2;
+  color: #666;
+}
+
+.xp-notepad-line-number {
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* Textarea */
+.xp-notepad-textarea {
+  flex: 1;
+  background: white;
+  border: none;
+  outline: none;
+  padding: 8px;
+  margin: 0;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.2;
+  color: #000;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  word-break: normal;
+  box-sizing: border-box;
+}
+
+.xp-notepad-textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.xp-notepad-textarea:focus {
+  background: white;
+}
+
+/* Read-only state */
+.xp-notepad-textarea[readonly] {
+  background: #f5f5f5;
+  color: #666;
+  cursor: default;
+}
+
+/* Scrollbars */
+.xp-notepad-textarea::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border: 1px inset #ece9d8;
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #e0e0e0, #c0c0c0);
+  border: 1px outset #d0d0d0;
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #f0f0f0, #d0d0d0);
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-corner {
+  background: #ece9d8;
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-button {
+  background: linear-gradient(90deg, #e0e0e0, #c0c0c0);
+  border: 1px outset #d0d0d0;
+  width: 16px;
+  height: 16px;
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-button:hover {
+  background: linear-gradient(90deg, #f0f0f0, #d0d0d0);
+}
+
+.xp-notepad-textarea::-webkit-scrollbar-button:active {
+  border: 1px inset #d0d0d0;
+}
+
+/* Selection styling */
+.xp-notepad-textarea::selection {
+  background: #316ac5;
+  color: white;
+}
+
+/* Theme Support */
+
+/* Zune theme overrides */
+.theme-zune .xp-notepad {
+  border: 1px solid var(--zune-border);
+  background: var(--zune-base);
+}
+
+.theme-zune .xp-notepad-line-numbers {
+  background: var(--zune-insensitive);
+  border-right: 1px solid var(--zune-border);
+  color: var(--zune-text-secondary);
+}
+
+.theme-zune .xp-notepad-textarea {
+  background: var(--zune-base);
+  color: var(--zune-text);
+}
+
+.theme-zune .xp-notepad-textarea::placeholder {
+  color: var(--zune-text-secondary);
+}
+
+.theme-zune .xp-notepad-textarea[readonly] {
+  background: var(--zune-insensitive);
+  color: var(--zune-text-secondary);
+}
+
+.theme-zune .xp-notepad-textarea::selection {
+  background: var(--zune-accent);
+  color: var(--zune-text-selected);
+}
+
+.theme-zune .xp-notepad-textarea::-webkit-scrollbar-track {
+  background: var(--zune-insensitive);
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune .xp-notepad-textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--zune-surface), var(--zune-border));
+  border: 1px solid var(--zune-border-dark);
+}
+
+.theme-zune .xp-notepad-textarea::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--zune-accent-hover), var(--zune-accent));
+}
+
+/* Royale theme overrides */
+.theme-royale .xp-notepad {
+  border: 1px solid var(--royale-border);
+  background: var(--royale-bg);
+}
+
+.theme-royale .xp-notepad-line-numbers {
+  background: var(--royale-surface);
+  border-right: 1px solid var(--royale-border);
+  color: var(--royale-text-secondary);
+}
+
+.theme-royale .xp-notepad-textarea {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+}
+
+.theme-royale .xp-notepad-textarea::placeholder {
+  color: var(--royale-text-secondary);
+}
+
+.theme-royale .xp-notepad-textarea[readonly] {
+  background: var(--royale-surface);
+  color: var(--royale-text-secondary);
+}
+
+.theme-royale .xp-notepad-textarea::selection {
+  background: var(--royale-accent);
+  color: var(--royale-text-selected);
+}
+
+/* Focus states */
+.xp-notepad:focus-within {
+  border-color: #0054e3;
+}
+
+.theme-zune .xp-notepad:focus-within {
+  border-color: var(--zune-accent);
+}
+
+.theme-royale .xp-notepad:focus-within {
+  border-color: var(--royale-accent);
+}

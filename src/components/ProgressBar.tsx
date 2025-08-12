@@ -38,10 +38,12 @@ export function ProgressBar(props: ProgressBarProps) {
     'box-shadow': 'inset 1px 1px 2px rgba(0,0,0,0.1)',
   });
 
+  // Constants for block dimensions (moved outside function to be accessible in createEffect)
+  const blockWidth = 16; // ancho total de cada bloque
+  const solidWidth = 12; // parte sólida del bloque
+  const gapWidth = 4; // separación transparente
+
   const progressFillStyle = () => {
-    const blockWidth = 16; // ancho total de cada bloque
-    const solidWidth = 12; // parte sólida del bloque
-    const gapWidth = 4; // separación transparente
 
     if (local.indeterminate) {
       // Modo indeterminado: solo 3 bloques moviéndose
@@ -58,7 +60,7 @@ export function ProgressBar(props: ProgressBarProps) {
           blockWidth * 2
         }px 0`,
         'background-repeat': 'no-repeat',
-        animation: 'xp-progress-indeterminate 2s linear infinite',
+        animation: 'xp-progress-indeterminate 5s linear infinite',
         'box-shadow': `
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         inset 0 -1px 0 rgba(0, 0, 0, 0.1)
@@ -66,24 +68,10 @@ export function ProgressBar(props: ProgressBarProps) {
       };
     }
 
-    // Modo determinado: calcular número de bloques basado en progreso
-    // Calcular el ancho disponible dinámicamente
-    const getContainerWidth = () => {
-      if (local.width) {
-        // Si se especifica un ancho, usarlo (menos bordes)
-        const widthValue = parseFloat(local.width.replace('px', ''));
-        return widthValue - 2; // Restar bordes
-      }
-      // Si no se especifica ancho, usar un valor por defecto
-      return 298; // Valor por defecto menos bordes
-    };
+    // Modo determinado: el ancho del progreso debe ser exactamente el porcentaje
+    const currentProgressWidth = progressPercentage();
 
-    const containerWidth = getContainerWidth();
-    const maxBlocks = Math.floor(containerWidth / blockWidth);
-    const progressWidth = (progressPercentage() / 100) * containerWidth;
-    const numberOfBlocks = Math.floor(progressWidth / blockWidth);
-
-    if (numberOfBlocks === 0) {
+    if (currentProgressWidth === 0) {
       return {
         height: '100%',
         width: '0%',
@@ -91,69 +79,27 @@ export function ProgressBar(props: ProgressBarProps) {
       };
     }
 
-    // Crear un patrón de bloques que respete el porcentaje exacto
-    const exactProgressWidth = (progressPercentage() / 100) * containerWidth;
+    // Crear un patrón de bloques que se repita a lo largo de toda la barra
+    // Los bloques se mostrarán dentro del área de progreso (X% de la barra)
+    const blockPattern = `
+      repeating-linear-gradient(
+        to right,
+        #5BA826 0px,
+        #5BA826 ${solidWidth}px,
+        transparent ${solidWidth}px,
+        transparent ${blockWidth}px
+      )
+    `;
 
-    // Si hay al menos un bloque completo o parcial
-    if (exactProgressWidth > 0) {
-      const completeBlocks = Math.floor(exactProgressWidth / blockWidth);
-      const remainingWidth = exactProgressWidth % blockWidth;
-
-      // Crear gradientes para bloques completos
-      const completeBlockGradients = Array.from(
-        { length: completeBlocks },
-        () =>
-          `linear-gradient(to bottom, #7ED321 0%, #5BA826 50%, #4E9A20 100%)`
-      );
-
-      // Si hay un bloque parcial, agregarlo
-      if (remainingWidth > 0 && completeBlocks < maxBlocks) {
-        const partialBlockWidth = Math.min(remainingWidth, solidWidth);
-        completeBlockGradients.push(
-          `linear-gradient(to bottom, #7ED321 0%, #5BA826 50%, #4E9A20 100%)`
-        );
-      }
-
-      const gradients = completeBlockGradients.join(', ');
-
-      const totalBlocks = completeBlockGradients.length;
-      const sizes = Array.from({ length: totalBlocks }, (_, i) => {
-        if (
-          i === totalBlocks - 1 &&
-          remainingWidth > 0 &&
-          remainingWidth < solidWidth
-        ) {
-          // Último bloque parcial
-          return `${Math.min(remainingWidth, solidWidth)}px 100%`;
-        }
-        return `${solidWidth}px 100%`;
-      }).join(', ');
-
-      const positions = Array.from(
-        { length: totalBlocks },
-        (_, i) => `${i * blockWidth}px 0`
-      ).join(', ');
-
-      return {
-        height: '100%',
-        width: `${exactProgressWidth}%`,
-        background: gradients,
-        'background-size': sizes,
-        'background-position': positions,
-        'background-repeat': 'no-repeat',
-        'box-shadow': `
+    return {
+      height: '100%',
+      width: `${currentProgressWidth}%`,
+      background: blockPattern,
+      'box-shadow': `
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         inset 0 -1px 0 rgba(0, 0, 0, 0.1)
       `,
-        transition: 'width 0.3s ease',
-      };
-    }
-
-    // Si no hay progreso, devolver transparente
-    return {
-      height: '100%',
-      width: '0%',
-      background: 'transparent',
+      transition: 'width 0.3s ease',
     };
   };
 
@@ -165,10 +111,14 @@ export function ProgressBar(props: ProgressBarProps) {
       styleElement.textContent = `
         @keyframes marching-ants {
           from {
-            background-position: 0 0;
+            background-position: -${blockWidth * 3}px 0, -${
+        blockWidth * 2
+      }px 0, -${blockWidth}px 0;
           }
           to {
-            background-position: 40px 0;
+            background-position: 100% 0, calc(100% + ${blockWidth}px) 0, calc(100% + ${
+        blockWidth * 2
+      }px) 0;
           }
         }
       `;

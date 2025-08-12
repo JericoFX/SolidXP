@@ -9,7 +9,7 @@
     background-position: -48px 0, -32px 0, -16px 0; 
   }
   100% { 
-    background-position: 300px 0, 316px 0, 332px 0; 
+    background-position: calc(100% + 48px) 0, calc(100% + 64px) 0, calc(100% + 80px) 0; 
   }
 }
 

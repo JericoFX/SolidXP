@@ -174,3 +174,68 @@ export interface TableProps<T = any> extends BaseProps {
   onHeaderClick?: (column: TableColumn<T>, event: MouseEvent) => void;
   onSort?: (column: string, direction: 'asc' | 'desc') => void;
 }
+
+/**
+ * File Explorer types
+ */
+export interface FileItem {
+  name: string;
+  type: 'file' | 'folder';
+  size?: number;
+  modified?: Date;
+  icon?: string;
+  path?: string;
+}
+
+export interface FileExplorerProps extends BaseProps {
+  data?: FileItem[];
+  currentPath?: string;
+  viewMode?: 'icons' | 'details';
+  showHidden?: boolean;
+  showSearch?: boolean;
+  searchPlaceholder?: string;
+  width?: string;
+  height?: string;
+  onNavigate?: (path: string, item: FileItem) => void;
+  onFileSelect?: (item: FileItem, selectedItems: string[]) => void;
+  onFileOpen?: (item: FileItem) => void;
+  onSearchChange?: (searchTerm: string, filteredItems: FileItem[]) => void;
+}
+
+/**
+ * Notepad component types
+ */
+export interface NotepadProps extends BaseProps {
+  value?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  showLineNumbers?: boolean;
+  fontFamily?: string;
+  fontSize?: string;
+  width?: string;
+  height?: string;
+  onChange?: (value: string) => void;
+  onSave?: (value: string) => void;
+}
+
+/**
+ * ImageViewer component types
+ */
+export interface ImageViewerProps extends BaseProps {
+  images: string[];
+  currentIndex?: number;
+  showThumbnails?: boolean;
+  showControls?: boolean;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  width?: string;
+  height?: string;
+  fit?: 'contain' | 'cover' | 'fill' | 'none';
+  modal?: boolean;
+  modalTitle?: string;
+  modalOverlay?: boolean;
+  modalCentered?: boolean;
+  modalEscapeToClose?: boolean;
+  onImageChange?: (index: number, src: string) => void;
+  onClose?: () => void;
+}

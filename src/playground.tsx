@@ -19,6 +19,9 @@ import {
   StatusField,
   Modal,
   Table,
+  FileExplorer,
+  Notepad,
+  ImageViewer,
 } from './index';
 
 function App() {
@@ -30,6 +33,13 @@ function App() {
   const [sliderValue, setSliderValue] = createSignal(25);
   const [activeTab, setActiveTab] = createSignal('tab1');
   const [showModal, setShowModal] = createSignal(false);
+  const [currentPath, setCurrentPath] = createSignal('');
+  const [explorerViewMode, setExplorerViewMode] = createSignal<'icons' | 'details'>('icons');
+  const [notepadValue, setNotepadValue] = createSignal('Welcome to SolidXP Notepad!\n\nThis is a Windows XP styled text editor.\n\nFeatures:\n- Authentic XP styling\n- Line numbers (toggle)\n- Ctrl+S to save\n- Theme support\n\nStart typing to edit this text...');
+  const [showLineNumbers, setShowLineNumbers] = createSignal(false);
+  const [currentImageIndex, setCurrentImageIndex] = createSignal(0);
+  const [showModalViewer, setShowModalViewer] = createSignal(false);
+  const [modalImageIndex, setModalImageIndex] = createSignal(0);
 
   // Sample data for table
   const tableData = [
@@ -85,6 +95,62 @@ function App() {
     ).toLocaleDateString(),
     salary: `$${(30000 + i * 1000).toLocaleString()}`,
   }));
+
+  // Sample file explorer data
+  const sampleFiles = () => {
+    const basePath = currentPath();
+    if (!basePath) {
+      // Root level - My Computer
+      return [
+        { name: 'Documents', type: 'folder' as const, size: undefined, modified: new Date('2023-01-15') },
+        { name: 'Pictures', type: 'folder' as const, size: undefined, modified: new Date('2023-01-20') },
+        { name: 'Music', type: 'folder' as const, size: undefined, modified: new Date('2023-01-10') },
+        { name: 'Downloads', type: 'folder' as const, size: undefined, modified: new Date('2023-01-25') },
+        { name: 'Desktop', type: 'folder' as const, size: undefined, modified: new Date('2023-01-12') },
+      ];
+    } else if (basePath === 'Documents') {
+      return [
+        { name: 'Resume.docx', type: 'file' as const, size: 125000, modified: new Date('2023-01-15') },
+        { name: 'Projects', type: 'folder' as const, size: undefined, modified: new Date('2023-01-18') },
+        { name: 'Notes.txt', type: 'file' as const, size: 2500, modified: new Date('2023-01-20') },
+        { name: 'Budget.xlsx', type: 'file' as const, size: 45000, modified: new Date('2023-01-22') },
+      ];
+    } else if (basePath === 'Pictures') {
+      return [
+        { name: 'Vacation', type: 'folder' as const, size: undefined, modified: new Date('2023-01-20') },
+        { name: 'photo1.jpg', type: 'file' as const, size: 2500000, modified: new Date('2023-01-21') },
+        { name: 'photo2.png', type: 'file' as const, size: 1800000, modified: new Date('2023-01-21') },
+        { name: 'screenshot.png', type: 'file' as const, size: 850000, modified: new Date('2023-01-23') },
+      ];
+    } else if (basePath === 'Music') {
+      return [
+        { name: 'Classical', type: 'folder' as const, size: undefined, modified: new Date('2023-01-10') },
+        { name: 'Rock', type: 'folder' as const, size: undefined, modified: new Date('2023-01-11') },
+        { name: 'song1.mp3', type: 'file' as const, size: 4200000, modified: new Date('2023-01-12') },
+        { name: 'song2.wav', type: 'file' as const, size: 8500000, modified: new Date('2023-01-13') },
+      ];
+    } else if (basePath === 'Documents/Projects') {
+      return [
+        { name: 'Website', type: 'folder' as const, size: undefined, modified: new Date('2023-01-18') },
+        { name: 'App', type: 'folder' as const, size: undefined, modified: new Date('2023-01-19') },
+        { name: 'README.md', type: 'file' as const, size: 1500, modified: new Date('2023-01-20') },
+      ];
+    } else {
+      return [
+        { name: 'sample.txt', type: 'file' as const, size: 1000, modified: new Date() },
+      ];
+    }
+  };
+
+  // Sample images for ImageViewer
+  const sampleImages = [
+    'https://picsum.photos/800/600?random=1',
+    'https://picsum.photos/800/600?random=2', 
+    'https://picsum.photos/800/600?random=3',
+    'https://picsum.photos/800/600?random=4',
+    'https://picsum.photos/800/600?random=5',
+    'https://picsum.photos/800/600?random=6',
+  ];
 
   const tableColumns = [
     { key: 'id', header: 'ID', width: '60px', sortable: true },
@@ -374,6 +440,64 @@ function App() {
         </Window>
       </div>
 
+      {/* FileExplorer Component */}
+      <div class='component-section'>
+        <h2 class='component-title'>File Explorer Component</h2>
+        <Window 
+          title='File Explorer - XP Style'
+          statusBar={
+            <StatusBar>
+              <StatusField>Path: {currentPath() || 'My Computer'}</StatusField>
+              <StatusField>View: {explorerViewMode()}</StatusField>
+              <StatusField>Search enabled - Type to filter</StatusField>
+            </StatusBar>
+          }
+        >
+          <div style='display: flex; gap: 10px; margin-bottom: 10px; padding: 5px; border-bottom: 1px solid #c0c0c0;'>
+            <Button 
+              size='small'
+              onClick={() => setExplorerViewMode('icons')}
+              variant={explorerViewMode() === 'icons' ? 'default-focus' : 'default'}
+            >
+              Icons
+            </Button>
+            <Button 
+              size='small'
+              onClick={() => setExplorerViewMode('details')}
+              variant={explorerViewMode() === 'details' ? 'default-focus' : 'default'}
+            >
+              Details
+            </Button>
+          </div>
+          <div style='margin-bottom: 10px; padding: 5px; background: #f8f8f8; border: 1px solid #c0c0c0;'>
+            <p style='font-size: 11px; margin: 0; color: #666;'>
+              Use the search bar above to filter files and folders in the current directory. 
+              Search works on file/folder names and updates results in real-time.
+            </p>
+          </div>
+          <FileExplorer
+            data={sampleFiles()}
+            currentPath={currentPath()}
+            viewMode={explorerViewMode()}
+            height='350px'
+            onNavigate={(path, item) => {
+              console.log('Navigating to:', path, item);
+              setCurrentPath(path);
+            }}
+            onFileSelect={(item, selectedItems) => {
+              console.log('File selected:', item, selectedItems);
+            }}
+            onFileOpen={(item) => {
+              console.log('File opened:', item);
+              alert(`Opening file: ${item.name}`);
+            }}
+            onSearchChange={(searchTerm, filteredItems) => {
+              console.log('Search changed:', searchTerm, 'Filtered items:', filteredItems.length);
+            }}
+          />
+        </Window>
+      </div>
+
       {/* Window with Status Bar */}
       <div class='component-section'>
         <h2 class='component-title'>Window with Status Bar</h2>
@@ -519,6 +643,10 @@ function App() {
               <p>Full width: </p>
               <ProgressBar value={progressValue()} />
             </div>
+            <div>
+              <p>100% Progress Test: </p>
+              <ProgressBar value={100} />
+            </div>
           </div>
         </Window>
       </div>
@@ -613,6 +741,218 @@ function App() {
           </Window>
         </div>
       </div>
+
+      {/* Notepad Component */}
+      <div class='component-section'>
+        <h2 class='component-title'>Notepad Component</h2>
+        <Window 
+          title='Notepad - XP Style'
+          statusBar={
+            <StatusBar>
+              <StatusField>Lines: {notepadValue().split('\n').length}</StatusField>
+              <StatusField>Characters: {notepadValue().length}</StatusField>
+              <StatusField>Line Numbers: {showLineNumbers() ? 'On' : 'Off'}</StatusField>
+            </StatusBar>
+          }
+        >
+          <div style='display: flex; gap: 10px; margin-bottom: 10px; padding: 5px; border-bottom: 1px solid #c0c0c0;'>
+            <Button 
+              size='small'
+              onClick={() => setShowLineNumbers(!showLineNumbers())}
+            >
+              {showLineNumbers() ? 'Hide' : 'Show'} Line Numbers
+            </Button>
+            <Button 
+              size='small'
+              onClick={() => setNotepadValue('')}
+            >
+              Clear
+            </Button>
+            <Button 
+              size='small'
+              onClick={() => {
+                console.log('Notepad content saved:', notepadValue());
+                alert('Content saved! Check console for details.');
+              }}
+            >
+              Save (Ctrl+S)
+            </Button>
+          </div>
+          <Notepad
+            value={notepadValue()}
+            showLineNumbers={showLineNumbers()}
+            height='300px'
+            onChange={setNotepadValue}
+            onSave={(content) => {
+              console.log('Saved via Ctrl+S:', content);
+              alert('Saved via Ctrl+S! Check console for details.');
+            }}
+          />
+        </Window>
+      </div>
+
+      {/* ImageViewer Component */}
+      <div class='component-section'>
+        <h2 class='component-title'>Image Viewer Component</h2>
+        <Window 
+          title='Image Viewer - XP Style Gallery'
+          statusBar={
+            <StatusBar>
+              <StatusField>Image: {currentImageIndex() + 1} of {sampleImages.length}</StatusField>
+              <StatusField>Gallery View</StatusField>
+              <StatusField>Use ← → arrows or click thumbnails</StatusField>
+            </StatusBar>
+          }
+        >
+          <div style='margin-bottom: 10px;'>
+            <p style='font-size: 11px; color: #666; margin: 5px 0;'>
+              Use keyboard arrows (← →), click navigation buttons, or click thumbnails. 
+              Press Space to toggle slideshow, Escape to close (if close handler is set).
+            </p>
+          </div>
+          <ImageViewer
+            images={sampleImages}
+            currentIndex={currentImageIndex()}
+            height='400px'
+            showThumbnails={true}
+            showControls={true}
+            autoPlayInterval={4000}
+            fit='contain'
+            onImageChange={(index, src) => {
+              console.log('Image changed to:', index, src);
+              setCurrentImageIndex(index);
+            }}
+          />
+        </Window>
+      </div>
+
+      {/* Multiple ImageViewers Demo */}
+      <div class='component-section'>
+        <h2 class='component-title'>Image Viewer - Multiple Configurations</h2>
+        <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 20px;'>
+          <Window
+            title='Compact Viewer'
+            statusBar={
+              <StatusBar>
+                <StatusField>Compact: No thumbnails</StatusField>
+              </StatusBar>
+            }
+          >
+            <ImageViewer
+              images={sampleImages.slice(0, 3)}
+              height='250px'
+              showThumbnails={false}
+              showControls={true}
+              fit='cover'
+            />
+          </Window>
+
+          <Window
+            title='Auto Slideshow'
+            statusBar={
+              <StatusBar>
+                <StatusField>Auto-playing slideshow</StatusField>
+              </StatusBar>
+            }
+          >
+            <ImageViewer
+              images={sampleImages.slice(2, 5)}
+              height='250px'
+              showThumbnails={true}
+              showControls={true}
+              autoPlay={true}
+              autoPlayInterval={2500}
+              fit='contain'
+            />
+          </Window>
+        </div>
+      </div>
+
+      {/* Modal Image Viewer Demo */}
+      <div class='component-section'>
+        <h2 class='component-title'>Modal Image Viewer - Windows XP Program Style</h2>
+        <Window 
+          title='Image Viewer Modal Demo'
+          statusBar={
+            <StatusBar>
+              <StatusField>Click thumbnails to open in modal</StatusField>
+              <StatusField>Like Windows Picture and Fax Viewer</StatusField>
+            </StatusBar>
+          }
+        >
+          <div style='margin-bottom: 10px;'>
+            <p style='font-size: 11px; color: #666; margin: 5px 0;'>
+              Click any thumbnail below to open it in a modal viewer, just like the Windows XP Picture and Fax Viewer program.
+              Use Escape to close, or click outside the image.
+            </p>
+          </div>
+          
+          {/* Thumbnail grid */}
+          <div style='display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 10px; background: white; border: 1px inset #ece9d8;'>
+            {sampleImages.map((image, index) => (
+              <div 
+                style='border: 1px solid #c0c0c0; padding: 4px; background: white; cursor: pointer; text-align: center;'
+                onClick={() => {
+                  setModalImageIndex(index);
+                  setShowModalViewer(true);
+                }}
+                title={`Open image ${index + 1} in viewer`}
+              >
+                <img 
+                  src={image} 
+                  alt={`Thumbnail ${index + 1}`}
+                  style='width: 100%; height: 80px; object-fit: cover; display: block;'
+                />
+                <div style='font-size: 10px; margin-top: 4px; color: #666;'>
+                  Image {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style='margin-top: 10px; display: flex; gap: 10px;'>
+            <Button 
+              onClick={() => {
+                setModalImageIndex(0);
+                setShowModalViewer(true);
+              }}
+            >
+              Open First Image
+            </Button>
+            <Button 
+              onClick={() => {
+                setModalImageIndex(Math.floor(Math.random() * sampleImages.length));
+                setShowModalViewer(true);
+              }}
+            >
+              Open Random Image
+            </Button>
+          </div>
+        </Window>
+      </div>
+
+      {/* Modal ImageViewer */}
+      <Show when={showModalViewer()}>
+        <ImageViewer
+          images={sampleImages}
+          currentIndex={modalImageIndex()}
+          modal={true}
+          modalTitle={`Image Viewer - ${modalImageIndex() + 1} of ${sampleImages.length}`}
+          modalCentered={true}
+          modalOverlay={true}
+          modalEscapeToClose={true}
+          showThumbnails={true}
+          showControls={true}
+          onImageChange={(index, src) => {
+            console.log('Modal image changed to:', index, src);
+            setModalImageIndex(index);
+          }}
+          onClose={() => {
+            console.log('Modal closed');
+            setShowModalViewer(false);
+          }}
+        />
+      </Show>
     </div>
   );
 }

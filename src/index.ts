@@ -15,6 +15,9 @@ export { TreeView, TreeItem } from './components/TreeView';
 export { StatusBar, StatusField } from './components/StatusBar';
 export { Modal } from './components/Modal';
 export { Table } from './components/Table';
+export { FileExplorer } from './components/FileExplorer';
+export { Notepad } from './components/Notepad';
+export { ImageViewer } from './components/ImageViewer';
 
 // Export utilities
 export { cn } from './utils/cn';
