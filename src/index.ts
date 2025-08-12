@@ -13,6 +13,8 @@ export { ProgressBar } from './components/ProgressBar';
 export { Slider } from './components/Slider';
 export { TreeView, TreeItem } from './components/TreeView';
 export { StatusBar, StatusField } from './components/StatusBar';
+export { Modal } from './components/Modal';
+export { Table } from './components/Table';
 
 // Export utilities
 export { cn } from './utils/cn';

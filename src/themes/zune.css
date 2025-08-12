@@ -1,59 +1,91 @@
 /* 
  * Zune Theme for SolidXP
- * Dark theme with orange accents inspired by Windows XP Zune theme
+ * Authentic Windows XP Zune theme with proper color palette
+ * Based on official Zune theme: github.com/PonyRoleplayer/Windows-XP-themes
  */
 
 .theme-zune {
-  /* Variables para el tema Zune */
-  --zune-bg: #1a1a1a;
-  --zune-surface: #2d2d2d;
-  --zune-accent: #ff6600;
-  --zune-accent-hover: #ff8833;
-  --zune-text: #ffffff;
-  --zune-text-secondary: #cccccc;
-  --zune-border: #444444;
-  --zune-shadow: rgba(0, 0, 0, 0.5);
+  /* Variables para el tema Zune auténtico */
+  --zune-bg: #f4f4f4; /* bg_color del tema original */
+  --zune-surface: #ebe9ed; /* background del tema original */
+  --zune-base: #ffffff; /* base_color - fondos de inputs */
+  --zune-accent: #c55815; /* selected_bg_color - naranja característico */
+  --zune-accent-hover: #d66425; /* accent más claro para hover */
+  --zune-text: #000000; /* fg_color - texto principal */
+  --zune-text-secondary: #4c4c4c; /* text_color - texto secundario */
+  --zune-text-selected: #262626; /* selected_fg_color */
+  --zune-border: #a0a0a0; /* bordes suaves */
+  --zune-border-dark: #808080; /* bordes más oscuros */
+  --zune-shadow: rgba(0, 0, 0, 0.2);
+  --zune-insensitive: #f2f2f2; /* insensitive_bg_color */
 }
 
 /* Window styling para tema Zune */
 .theme-zune .window {
   background: var(--zune-surface);
-  box-shadow: inset -1px -1px var(--zune-shadow), inset 1px 1px #555, 
-              inset -2px -2px #333, inset 2px 2px #555;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 
+              inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+              inset -1px -1px 0 rgba(0, 0, 0, 0.1);
   color: var(--zune-text);
+  border: 1px solid var(--zune-border-dark);
+  border-radius: 8px 8px 0 0; /* Esquinas redondeadas en la parte superior */
 }
 
 .theme-zune .title-bar {
-  background: linear-gradient(90deg, #ff6600 0%, #ff8833 50%, #ff6600 100%);
-  color: #000000;
+  background: linear-gradient(to bottom, 
+    var(--zune-accent) 0%, 
+    var(--zune-accent-hover) 50%, 
+    var(--zune-accent) 100%);
+  color: var(--zune-text-selected);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 7px 7px 0 0; /* Matching window corners */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .theme-zune .title-bar-text {
-  color: #000000;
+  color: var(--zune-text-selected);
   font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .theme-zune .window-body {
-  background: var(--zune-surface);
+  background: var(--zune-base);
   color: var(--zune-text);
+  border-radius: 0 0 3px 3px; /* Subtle bottom rounding */
 }
 
 /* Button styling para tema Zune */
 .theme-zune button {
-  background: var(--zune-surface);
+  background: linear-gradient(to bottom, #f7f7f7, var(--zune-surface));
   color: var(--zune-text);
   border: 1px solid var(--zune-border);
-  box-shadow: inset -1px -1px #111, inset 1px 1px #555, 
-              inset -2px -2px #222, inset 2px 2px #444;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 
+              0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
 }
 
 .theme-zune button:hover {
-  background: #3a3a3a;
+  background: linear-gradient(to bottom, #ffc73c, #ffb732);
+  border-color: #c55815;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 
+              0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .theme-zune button:active {
-  box-shadow: inset -1px -1px #555, inset 1px 1px #111, 
-              inset -2px -2px #444, inset 2px 2px #222;
+  background: linear-gradient(to bottom, var(--zune-accent), #b34e13);
+  color: var(--zune-text-selected);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 
+              inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.theme-zune button:disabled {
+  background: var(--zune-insensitive);
+  color: #767577;
+  border-color: #bbb;
+  opacity: 0.6;
+  box-shadow: none;
 }
 
 /* Form elements para tema Zune */
@@ -62,27 +94,43 @@
 .theme-zune input[type="password"],
 .theme-zune textarea,
 .theme-zune select {
-  background: #1a1a1a;
+  background: var(--zune-base);
   color: var(--zune-text);
   border: 1px solid var(--zune-border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
 }
 
 .theme-zune input:focus,
 .theme-zune textarea:focus,
 .theme-zune select:focus {
-  background: #222;
+  background: var(--zune-base);
   border-color: var(--zune-accent);
-  box-shadow: 0 0 3px var(--zune-accent);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 
+              0 0 0 2px rgba(197, 88, 21, 0.2);
+  outline: none;
+}
+
+.theme-zune input:disabled,
+.theme-zune textarea:disabled,
+.theme-zune select:disabled {
+  background: var(--zune-insensitive);
+  color: #767577;
+  border-color: #ccc;
+  opacity: 0.6;
 }
 
 /* Progress bar para tema Zune */
 .theme-zune .xp-progress-bar-container {
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  background-color: var(--zune-base);
+  border: 1px solid var(--zune-border);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .theme-zune .xp-progress-bar-fill {
-  background: linear-gradient(to bottom, var(--zune-accent), var(--zune-accent-hover));
+  background: linear-gradient(to bottom, var(--zune-accent), var(--zune-accent-hover)) !important;
 }
 
 .theme-zune .xp-progress-bar-fill.animated {
@@ -94,49 +142,53 @@
     var(--zune-accent) 50%,
     var(--zune-accent) 75%,
     var(--zune-accent-hover) 75%
-  );
+  ) !important;
 }
 
 /* Tabs para tema Zune */
 .theme-zune menu[role="tablist"] button {
   background: var(--zune-surface);
   color: var(--zune-text-secondary);
-  border: none;
-  border-bottom: 2px solid transparent;
+  border: 1px solid var(--zune-border);
+  border-bottom: none;
+  margin-right: 2px;
 }
 
 .theme-zune menu[role="tablist"] button:hover {
-  background: #3a3a3a;
+  background: var(--zune-bg);
   color: var(--zune-text);
 }
 
 .theme-zune menu[role="tablist"] button[aria-selected="true"] {
-  background: var(--zune-surface);
+  background: var(--zune-base);
   color: var(--zune-text);
-  border-bottom: 2px solid var(--zune-accent);
+  border-bottom: 1px solid var(--zune-base);
+  position: relative;
+  z-index: 1;
 }
 
 .theme-zune [role="tabpanel"] {
-  background: var(--zune-surface);
+  background: var(--zune-base);
   color: var(--zune-text);
   border: 1px solid var(--zune-border);
 }
 
 /* Tree view para tema Zune */
 .theme-zune ul.tree-view {
-  background: #1a1a1a;
+  background: var(--zune-base);
   color: var(--zune-text);
   border: 1px solid var(--zune-border);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .theme-zune ul.tree-view a {
-  color: var(--zune-text-secondary);
+  color: var(--zune-text);
 }
 
 .theme-zune ul.tree-view a:hover,
 .theme-zune ul.tree-view a:focus {
   background: var(--zune-accent);
-  color: #000;
+  color: var(--zune-text-selected);
 }
 
 /* Status bar para tema Zune */
@@ -146,43 +198,131 @@
 }
 
 .theme-zune .status-bar-field {
-  background: #1a1a1a;
+  background: var(--zune-insensitive);
   color: var(--zune-text-secondary);
   border: 1px inset var(--zune-border);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* Checkboxes y radios para tema Zune */
 .theme-zune input[type="checkbox"] + label::before {
-  background: #1a1a1a;
+  background: var(--zune-base);
   border: 1px solid var(--zune-border);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .theme-zune input[type="checkbox"]:checked + label::after {
-  filter: brightness(0) invert(1);
+  filter: none;
+  color: var(--zune-text);
 }
 
 .theme-zune input[type="radio"] + label::before {
-  background: #1a1a1a;
+  background: var(--zune-base);
   border: 1px solid var(--zune-border);
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* Sliders para tema Zune */
+.theme-zune input[type="range"] {
+  background: transparent;
+  -webkit-appearance: none;
+  height: 20px;
+}
+
 .theme-zune input[type="range"]::-webkit-slider-track {
-  background: #1a1a1a;
+  background: linear-gradient(to bottom, #ddd, var(--zune-insensitive));
   border: 1px solid var(--zune-border);
+  border-radius: 10px;
+  height: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .theme-zune input[type="range"]::-webkit-slider-thumb {
-  background: var(--zune-accent);
-  border: 1px solid var(--zune-accent-hover);
+  -webkit-appearance: none;
+  background: linear-gradient(to bottom, #f7f7f7, var(--zune-surface));
+  border: 1px solid var(--zune-border);
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.theme-zune input[type="range"]::-webkit-slider-thumb:hover {
+  background: linear-gradient(to bottom, #ffc73c, #ffb732);
+  border-color: var(--zune-accent);
 }
 
 .theme-zune input[type="range"]::-moz-range-track {
-  background: #1a1a1a;
+  background: linear-gradient(to bottom, #ddd, var(--zune-insensitive));
   border: 1px solid var(--zune-border);
+  border-radius: 10px;
+  height: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .theme-zune input[type="range"]::-moz-range-thumb {
+  background: linear-gradient(to bottom, #f7f7f7, var(--zune-surface));
+  border: 1px solid var(--zune-border);
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  -moz-appearance: none;
+}
+
+/* Advanced styling effects from GTK 4.0 */
+.theme-zune .window {
+  backdrop-filter: blur(10px);
+}
+
+/* Backdrop state for when window loses focus */
+.theme-zune .window:not(:focus-within) {
+  opacity: 0.95;
+}
+
+/* Selection styling */
+.theme-zune ::selection {
   background: var(--zune-accent);
-  border: 1px solid var(--zune-accent-hover);
+  color: var(--zune-text-selected);
+}
+
+/* Scrollbar styling */
+.theme-zune ::-webkit-scrollbar {
+  width: 16px;
+  background: var(--zune-insensitive);
+}
+
+.theme-zune ::-webkit-scrollbar-track {
+  background: var(--zune-insensitive);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.theme-zune ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--zune-surface), var(--zune-border));
+  border-radius: 8px;
+  border: 1px solid var(--zune-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-zune ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--zune-accent-hover), var(--zune-accent));
+}
+
+/* Enhanced focus ring for accessibility */
+.theme-zune button:focus-visible,
+.theme-zune input:focus-visible,
+.theme-zune select:focus-visible {
+  outline: 2px solid var(--zune-accent);
+  outline-offset: 2px;
+}
+
+/* Subtle animations */
+.theme-zune * {
+  transition: background-color 0.15s ease, 
+              border-color 0.15s ease, 
+              box-shadow 0.15s ease,
+              opacity 0.15s ease;
 }

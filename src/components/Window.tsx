@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, createSignal } from 'solid-js';
+import { mergeProps, splitProps, createSignal, Show } from 'solid-js';
 import { cn } from '../utils/cn';
 import type { WindowProps } from '../types';
 
@@ -17,6 +17,7 @@ export function Window(props: WindowProps) {
     'minimizable', 
     'maximizable',
     'closable',
+    'statusBar',
     'onClose',
     'onMinimize',
     'onMaximize',
@@ -77,6 +78,9 @@ export function Window(props: WindowProps) {
       <div class="window-body">
         {local.children}
       </div>
+      <Show when={local.statusBar}>
+        {local.statusBar}
+      </Show>
     </div>
   );
 }

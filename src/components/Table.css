@@ -1,0 +1,394 @@
+/* Table Container */
+.xp-table-container {
+  border: 2px inset #ece9d8;
+  background: white;
+  font-family: "Tahoma", sans-serif;
+  font-size: 11px;
+  overflow: auto;
+  position: relative;
+}
+
+/* Sticky Header Container */
+.xp-table-sticky-header {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.xp-table-header-container {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-bottom: 1px solid #808080;
+  background: white;
+  z-index: 10;
+}
+
+.xp-table-body-container {
+  flex: 1;
+  overflow: auto;
+  background: white;
+}
+
+/* Ensure header and body tables have same column widths */
+.xp-table-header-only,
+.xp-table-body-only {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.xp-table-head-spacer {
+  visibility: hidden;
+  height: 0;
+}
+
+.xp-table-head-spacer th {
+  height: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  margin: 0;
+  line-height: 0;
+}
+
+/* Table */
+.xp-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+/* Caption */
+.xp-table-caption {
+  padding: 8px;
+  background: #ece9d8;
+  border-bottom: 1px solid #c0c0c0;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Header */
+.xp-table-head {
+  background: linear-gradient(to bottom, #f0f0f0, #d8d8d8);
+  border-bottom: 1px solid #808080;
+}
+
+.xp-table-header-row {
+  background: inherit;
+}
+
+.xp-table-header-cell {
+  background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+  border: 1px outset #e0e0e0;
+  padding: 4px 8px;
+  text-align: left;
+  font-weight: bold;
+  color: #000;
+  position: relative;
+  user-select: none;
+}
+
+.xp-table-sortable {
+  cursor: pointer;
+}
+
+.xp-table-sortable:hover {
+  background: linear-gradient(to bottom, #ffffff, #e8e8e8);
+}
+
+.xp-table-sortable:active {
+  border: 1px inset #e0e0e0;
+  background: linear-gradient(to bottom, #d0d0d0, #f0f0f0);
+}
+
+.xp-table-sorted {
+  background: linear-gradient(to bottom, #e8f0ff, #d0e0ff) !important;
+  border-color: #0054e3;
+}
+
+.xp-table-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.xp-table-header-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-table-sort-indicator {
+  font-size: 8px;
+  color: #666;
+  min-width: 8px;
+  text-align: center;
+}
+
+.xp-table-sorted .xp-table-sort-indicator {
+  color: #0054e3;
+}
+
+/* Body */
+.xp-table-body {
+  background: white;
+}
+
+.xp-table-row {
+  background: white;
+}
+
+.xp-table-row:nth-child(even).xp-table-striped {
+  background: #f8f8f8;
+}
+
+.xp-table-hoverable .xp-table-row:hover {
+  background: #e8f0ff !important;
+}
+
+.xp-table-selectable .xp-table-row {
+  cursor: pointer;
+}
+
+.xp-table-row-selected {
+  background: #3166cc !important;
+  color: white;
+}
+
+.xp-table-cell {
+  padding: 4px 8px;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.xp-table-cell-clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.xp-table-cell-clickable:hover {
+  background: rgba(0, 84, 227, 0.1) !important;
+}
+
+.xp-table-bordered .xp-table-cell {
+  border: 1px solid #c0c0c0;
+}
+
+/* Size variants */
+.xp-table-size-small .xp-table-header-cell,
+.xp-table-size-small .xp-table-cell {
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.xp-table-size-large .xp-table-header-cell,
+.xp-table-size-large .xp-table-cell {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+/* Scrollbars for normal table */
+.xp-table-container::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-table-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border: 1px inset #ece9d8;
+}
+
+.xp-table-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #e0e0e0, #c0c0c0);
+  border: 1px outset #d0d0d0;
+}
+
+.xp-table-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #f0f0f0, #d0d0d0);
+}
+
+.xp-table-container::-webkit-scrollbar-corner {
+  background: #ece9d8;
+}
+
+/* Scrollbars for sticky header body */
+.xp-table-body-container::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-table-body-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border: 1px inset #ece9d8;
+}
+
+.xp-table-body-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #e0e0e0, #c0c0c0);
+  border: 1px outset #d0d0d0;
+}
+
+.xp-table-body-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #f0f0f0, #d0d0d0);
+}
+
+.xp-table-body-container::-webkit-scrollbar-corner {
+  background: #ece9d8;
+}
+
+/* Adjust scrollbar buttons */
+.xp-table-body-container::-webkit-scrollbar-button {
+  background: linear-gradient(90deg, #e0e0e0, #c0c0c0);
+  border: 1px outset #d0d0d0;
+  width: 16px;
+  height: 16px;
+}
+
+.xp-table-body-container::-webkit-scrollbar-button:hover {
+  background: linear-gradient(90deg, #f0f0f0, #d0d0d0);
+}
+
+.xp-table-body-container::-webkit-scrollbar-button:active {
+  border: 1px inset #d0d0d0;
+}
+
+/* Empty state */
+.xp-table-empty {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Theme support */
+
+/* Zune theme overrides */
+.theme-zune .xp-table-container {
+  border: 1px solid var(--zune-border);
+  background: var(--zune-base);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.theme-zune .xp-table {
+  background: var(--zune-base);
+  color: var(--zune-text);
+}
+
+.theme-zune .xp-table-caption {
+  background: var(--zune-surface);
+  color: var(--zune-text);
+  border-bottom: 1px solid var(--zune-border);
+}
+
+.theme-zune .xp-table-head {
+  background: linear-gradient(to bottom, var(--zune-bg), var(--zune-surface));
+  border-bottom: 1px solid var(--zune-border);
+}
+
+.theme-zune .xp-table-header-cell {
+  background: linear-gradient(to bottom, var(--zune-bg), var(--zune-surface));
+  border: 1px solid var(--zune-border);
+  color: var(--zune-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.theme-zune .xp-table-sortable:hover {
+  background: linear-gradient(to bottom, #ffc73c, #ffb732);
+  border-color: var(--zune-accent);
+}
+
+.theme-zune .xp-table-sorted {
+  background: linear-gradient(to bottom, var(--zune-accent), var(--zune-accent-hover)) !important;
+  color: var(--zune-text-selected);
+  border-color: var(--zune-accent);
+}
+
+.theme-zune .xp-table-row {
+  background: var(--zune-base);
+  color: var(--zune-text);
+}
+
+.theme-zune .xp-table-row:nth-child(even).xp-table-striped {
+  background: var(--zune-insensitive);
+}
+
+.theme-zune .xp-table-hoverable .xp-table-row:hover {
+  background: rgba(197, 88, 21, 0.1) !important;
+}
+
+.theme-zune .xp-table-row-selected {
+  background: var(--zune-accent) !important;
+  color: var(--zune-text-selected);
+}
+
+.theme-zune .xp-table-cell {
+  border-color: var(--zune-border);
+}
+
+.theme-zune .xp-table-sort-indicator {
+  color: var(--zune-text-secondary);
+}
+
+.theme-zune .xp-table-sorted .xp-table-sort-indicator {
+  color: var(--zune-text-selected);
+}
+
+.theme-zune .xp-table-cell-clickable:hover {
+  background: rgba(197, 88, 21, 0.15) !important;
+}
+
+/* Royale theme overrides */
+.theme-royale .xp-table-cell-clickable:hover {
+  background: rgba(91, 131, 189, 0.15) !important;
+}
+
+/* Theme-specific scrollbars for sticky headers */
+
+/* Zune theme scrollbars */
+.theme-zune .xp-table-body-container::-webkit-scrollbar-track {
+  background: var(--zune-insensitive);
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune .xp-table-body-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--zune-surface), var(--zune-border));
+  border: 1px solid var(--zune-border-dark);
+}
+
+.theme-zune .xp-table-body-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--zune-accent-hover), var(--zune-accent));
+}
+
+.theme-zune .xp-table-header-container {
+  border-bottom: 1px solid var(--zune-border);
+  background: var(--zune-base);
+}
+
+.theme-zune .xp-table-body-container {
+  background: var(--zune-base);
+}
+
+/* Royale theme scrollbars */
+.theme-royale .xp-table-body-container::-webkit-scrollbar-track {
+  background: var(--royale-bg);
+  border: 1px solid var(--royale-border);
+}
+
+.theme-royale .xp-table-body-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-border));
+  border: 1px solid var(--royale-border-dark);
+}
+
+.theme-royale .xp-table-body-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+}
+
+.theme-royale .xp-table-header-container {
+  border-bottom: 1px solid var(--royale-border);
+  background: var(--royale-bg);
+}
+
+.theme-royale .xp-table-body-container {
+  background: var(--royale-bg);
+}

@@ -10,7 +10,8 @@
       "Bash(bun info:*)",
       "Bash(bun run:*)",
       "Bash(bunx tsc:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": []
   }

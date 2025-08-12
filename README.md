@@ -28,10 +28,8 @@ import { Window, Button } from 'solidxp';
 
 function App() {
   return (
-    <Window title="My XP App">
-      <Button onClick={() => alert('Hello XP!')}>
-        Click me!
-      </Button>
+    <Window title='My XP App'>
+      <Button onClick={() => alert('Hello XP!')}>Click me!</Button>
     </Window>
   );
 }
@@ -42,7 +40,7 @@ function App() {
 - `Window` - Main window container with title bar and controls
 - `Button` - Windows XP style buttons
 - `Checkbox` - Checkbox inputs
-- `Radio` - Radio button inputs  
+- `Radio` - Radio button inputs
 - `TextBox` - Text input fields
 - `Select` - Dropdown selection
 - `Tabs` - Tab navigation
@@ -84,3 +82,10 @@ MIT License - see [LICENSE](./LICENSE) for details.
 - Built with [SolidJS](https://solidjs.com)
 - Styled with [xp.css](https://github.com/botoxparty/XP.css)
 - Inspired by the classic Windows XP interface
+
+TODO FIX PROGRESSBAR USING % FOR THE PROGRESS VALUE.
+FINISH FILEeXPLORER.
+☐ Create FileExplorer component with folder navigation
+☐ Implement file/folder icons and double-click navigation
+☐ Add breadcrumb navigation and address bar
+☐ Update playground with File Explorer demo

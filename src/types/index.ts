@@ -33,6 +33,7 @@ export interface WindowProps extends BaseProps {
   minimizable?: boolean;
   maximizable?: boolean;
   closable?: boolean;
+  statusBar?: JSX.Element;
   onClose?: () => void;
   onMinimize?: () => void;
   onMaximize?: () => void;
@@ -103,6 +104,8 @@ export interface ProgressBarProps extends BaseProps {
   value?: number;
   max?: number;
   indeterminate?: boolean;
+  width?: string;
+  height?: string;
 }
 
 /**
@@ -115,4 +118,59 @@ export interface SliderProps extends BaseProps, FormElementProps {
   step?: number;
   orientation?: 'horizontal' | 'vertical';
   onChange?: (value: number, event: Event) => void;
+}
+
+/**
+ * Modal props
+ */
+export interface ModalProps extends BaseProps {
+  open?: boolean;
+  title?: string;
+  onClose?: () => void;
+  closable?: boolean;
+  centered?: boolean;
+  overlay?: boolean;
+  escapeToClose?: boolean;
+}
+
+/**
+ * Table column definition
+ */
+export interface TableColumn<T = any> {
+  key: string;
+  header: string;
+  width?: string;
+  sortable?: boolean;
+  accessor?: (row: T) => any;
+  render?: (row: T, index: number) => JSX.Element;
+}
+
+/**
+ * Table row type (generic)
+ */
+export type TableRow = Record<string, any>;
+
+/**
+ * Table props
+ */
+export interface TableProps<T = any> extends BaseProps {
+  columns: TableColumn<T>[];
+  data: T[];
+  striped?: boolean;
+  bordered?: boolean;
+  hoverable?: boolean;
+  sortable?: boolean;
+  selectable?: boolean;
+  size?: 'small' | 'medium' | 'large';
+  caption?: string;
+  selectedRows?: T[];
+  width?: string;
+  height?: string;
+  stickyHeader?: boolean;
+  onRowClick?: (row: T, index: number, event: MouseEvent) => void;
+  onRowDoubleClick?: (row: T, index: number, event: MouseEvent) => void;
+  onRowSelect?: (row: T, index: number) => void;
+  onCellClick?: (row: T, column: TableColumn<T>, value: any, event: MouseEvent) => void;
+  onHeaderClick?: (column: TableColumn<T>, event: MouseEvent) => void;
+  onSort?: (column: string, direction: 'asc' | 'desc') => void;
 }

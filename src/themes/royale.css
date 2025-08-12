@@ -1,0 +1,425 @@
+/* 
+ * Royale Dark Theme for SolidXP
+ * Sophisticated dark theme with blue accents inspired by Windows XP Royale
+ * Based on analysis from github.com/PonyRoleplayer/Windows-XP-themes
+ */
+
+.theme-royale {
+  /* Variables para el tema Royale Dark */
+  --royale-bg: #2a2a2a; /* Dark background */
+  --royale-surface: #3a3a3a; /* Surface elements */
+  --royale-base: #4a4a4a; /* Input backgrounds */
+  --royale-accent: #5b83bd; /* Primary blue accent */
+  --royale-accent-hover: #6b93cd; /* Lighter blue for hover */
+  --royale-accent-dark: #4b73ad; /* Darker blue for pressed states */
+  --royale-text: #ffffff; /* Primary white text */
+  --royale-text-secondary: #cccccc; /* Secondary light gray text */
+  --royale-text-muted: #999999; /* Muted text */
+  --royale-text-accent: #ffffff; /* Text on accent backgrounds */
+  --royale-border: #555555; /* Standard borders */
+  --royale-border-light: #666666; /* Lighter borders */
+  --royale-border-dark: #333333; /* Darker borders */
+  --royale-shadow: rgba(0, 0, 0, 0.6); /* Shadows */
+  --royale-disabled: #3a3a3a; /* Disabled backgrounds */
+  --royale-disabled-text: #777777; /* Disabled text */
+}
+
+/* Window styling para tema Royale */
+.theme-royale .window {
+  background: var(--royale-surface);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7), 
+              inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+              inset -1px -1px 0 rgba(0, 0, 0, 0.3);
+  color: var(--royale-text);
+  border: 1px solid var(--royale-border-dark);
+  border-radius: 6px 6px 0 0;
+}
+
+.theme-royale .title-bar {
+  background: linear-gradient(to bottom, 
+    var(--royale-accent) 0%, 
+    var(--royale-accent-hover) 30%, 
+    var(--royale-accent) 70%,
+    var(--royale-accent-dark) 100%);
+  color: var(--royale-text-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid var(--royale-border-dark);
+  border-radius: 5px 5px 0 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.theme-royale .title-bar-text {
+  color: var(--royale-text-accent);
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.theme-royale .window-body {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+  border-radius: 0 0 3px 3px;
+}
+
+/* Button styling para tema Royale */
+.theme-royale button {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  color: var(--royale-text);
+  border: 1px solid var(--royale-border);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 
+              0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-royale button:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+  border-color: var(--royale-accent-dark);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 
+              0 3px 6px rgba(0, 0, 0, 0.4);
+  color: var(--royale-text-accent);
+}
+
+.theme-royale button:active {
+  background: linear-gradient(to bottom, var(--royale-accent-dark), var(--royale-accent));
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 
+              inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(1px);
+}
+
+.theme-royale button:disabled {
+  background: var(--royale-disabled);
+  color: var(--royale-disabled-text);
+  border-color: var(--royale-border-dark);
+  opacity: 0.5;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Form elements para tema Royale */
+.theme-royale input[type="text"],
+.theme-royale input[type="email"],
+.theme-royale input[type="password"],
+.theme-royale textarea,
+.theme-royale select {
+  background: var(--royale-base);
+  color: var(--royale-text);
+  border: 1px solid var(--royale-border);
+  border-radius: 3px;
+  padding: 6px 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-royale input:focus,
+.theme-royale textarea:focus,
+.theme-royale select:focus {
+  background: var(--royale-base);
+  border-color: var(--royale-accent);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 
+              0 0 0 3px rgba(91, 131, 189, 0.3);
+  outline: none;
+}
+
+.theme-royale input:disabled,
+.theme-royale textarea:disabled,
+.theme-royale select:disabled {
+  background: var(--royale-disabled);
+  color: var(--royale-disabled-text);
+  border-color: var(--royale-border-dark);
+  opacity: 0.6;
+}
+
+/* Progress bar para tema Royale */
+.theme-royale .xp-progress-bar-container {
+  background-color: var(--royale-bg);
+  border: 1px solid var(--royale-border);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-royale .xp-progress-bar-fill {
+  background: linear-gradient(to bottom, var(--royale-accent), var(--royale-accent-dark)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.theme-royale .xp-progress-bar-fill.animated {
+  background: linear-gradient(
+    -45deg,
+    var(--royale-accent) 25%,
+    var(--royale-accent-hover) 25%,
+    var(--royale-accent-hover) 50%,
+    var(--royale-accent) 50%,
+    var(--royale-accent) 75%,
+    var(--royale-accent-hover) 75%
+  ) !important;
+}
+
+/* Tabs para tema Royale */
+.theme-royale menu[role="tablist"] button {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  color: var(--royale-text-secondary);
+  border: 1px solid var(--royale-border);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  margin-right: 2px;
+  transition: all 0.2s ease;
+}
+
+.theme-royale menu[role="tablist"] button:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+  color: var(--royale-text-accent);
+  border-color: var(--royale-accent-dark);
+}
+
+.theme-royale menu[role="tablist"] button[aria-selected="true"] {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+  border-bottom: 1px solid var(--royale-bg);
+  border-color: var(--royale-accent);
+  position: relative;
+  z-index: 1;
+}
+
+.theme-royale [role="tabpanel"] {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+  border: 1px solid var(--royale-border);
+  border-radius: 0 0 4px 4px;
+}
+
+/* Tree view para tema Royale */
+.theme-royale ul.tree-view {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+  border: 1px solid var(--royale-border);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-royale ul.tree-view a {
+  color: var(--royale-text);
+  transition: all 0.2s ease;
+}
+
+.theme-royale ul.tree-view a:hover,
+.theme-royale ul.tree-view a:focus {
+  background: var(--royale-accent);
+  color: var(--royale-text-accent);
+}
+
+/* Status bar para tema Royale */
+.theme-royale .status-bar {
+  background: var(--royale-surface);
+  border-top: 1px solid var(--royale-border);
+}
+
+.theme-royale .status-bar-field {
+  background: var(--royale-disabled);
+  color: var(--royale-text-secondary);
+  border: 1px inset var(--royale-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Checkboxes y radios para tema Royale */
+.theme-royale input[type="checkbox"] + label::before {
+  background: var(--royale-base);
+  border: 1px solid var(--royale-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.theme-royale input[type="checkbox"]:checked + label::after {
+  filter: brightness(0) invert(1);
+  color: var(--royale-text);
+}
+
+.theme-royale input[type="radio"] + label::before {
+  background: var(--royale-base);
+  border: 1px solid var(--royale-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Sliders para tema Royale */
+.theme-royale input[type="range"] {
+  background: transparent;
+  -webkit-appearance: none;
+  height: 24px;
+}
+
+.theme-royale input[type="range"]::-webkit-slider-track {
+  background: linear-gradient(to bottom, var(--royale-border-dark), var(--royale-disabled));
+  border: 1px solid var(--royale-border);
+  border-radius: 12px;
+  height: 8px;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-royale input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  border: 1px solid var(--royale-border);
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-royale input[type="range"]::-webkit-slider-thumb:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+  border-color: var(--royale-accent-dark);
+}
+
+/* Modal styling para tema Royale */
+.theme-royale .xp-modal {
+  background: var(--royale-surface);
+  border: 1px solid var(--royale-border-dark);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8),
+              inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+              inset -1px -1px 0 rgba(0, 0, 0, 0.3);
+  color: var(--royale-text);
+}
+
+.theme-royale .xp-modal-header {
+  background: linear-gradient(to bottom, 
+    var(--royale-accent) 0%, 
+    var(--royale-accent-hover) 50%, 
+    var(--royale-accent) 100%);
+  color: var(--royale-text-accent);
+  border-bottom: 1px solid var(--royale-border-dark);
+}
+
+.theme-royale .xp-modal-title {
+  color: var(--royale-text-accent);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.theme-royale .xp-modal-close {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  border: 1px solid var(--royale-border);
+  color: var(--royale-text);
+}
+
+.theme-royale .xp-modal-close:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+  border-color: var(--royale-accent-dark);
+  color: var(--royale-text-accent);
+}
+
+.theme-royale .xp-modal-body {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+}
+
+/* Table styling para tema Royale */
+.theme-royale .xp-table-container {
+  border: 1px solid var(--royale-border);
+  background: var(--royale-bg);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-royale .xp-table {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+}
+
+.theme-royale .xp-table-caption {
+  background: var(--royale-surface);
+  color: var(--royale-text);
+  border-bottom: 1px solid var(--royale-border);
+}
+
+.theme-royale .xp-table-head {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  border-bottom: 1px solid var(--royale-border);
+}
+
+.theme-royale .xp-table-header-cell {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-bg));
+  border: 1px solid var(--royale-border);
+  color: var(--royale-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.theme-royale .xp-table-sortable:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+  border-color: var(--royale-accent-dark);
+  color: var(--royale-text-accent);
+}
+
+.theme-royale .xp-table-sorted {
+  background: linear-gradient(to bottom, var(--royale-accent), var(--royale-accent-dark)) !important;
+  color: var(--royale-text-accent);
+  border-color: var(--royale-accent-dark);
+}
+
+.theme-royale .xp-table-row {
+  background: var(--royale-bg);
+  color: var(--royale-text);
+}
+
+.theme-royale .xp-table-row:nth-child(even).xp-table-striped {
+  background: var(--royale-disabled);
+}
+
+.theme-royale .xp-table-hoverable .xp-table-row:hover {
+  background: rgba(91, 131, 189, 0.2) !important;
+}
+
+.theme-royale .xp-table-row-selected {
+  background: var(--royale-accent) !important;
+  color: var(--royale-text-accent);
+}
+
+.theme-royale .xp-table-cell {
+  border-color: var(--royale-border);
+}
+
+/* Selection styling */
+.theme-royale ::selection {
+  background: var(--royale-accent);
+  color: var(--royale-text-accent);
+}
+
+/* Scrollbar styling */
+.theme-royale ::-webkit-scrollbar {
+  width: 16px;
+  background: var(--royale-surface);
+}
+
+.theme-royale ::-webkit-scrollbar-track {
+  background: var(--royale-bg);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-royale ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--royale-surface), var(--royale-border));
+  border-radius: 8px;
+  border: 1px solid var(--royale-border-dark);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-royale ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--royale-accent-hover), var(--royale-accent));
+}
+
+/* Enhanced focus ring for accessibility */
+.theme-royale button:focus-visible,
+.theme-royale input:focus-visible,
+.theme-royale select:focus-visible {
+  outline: 2px solid var(--royale-accent);
+  outline-offset: 2px;
+}
+
+/* Backdrop effects */
+.theme-royale .window:not(:focus-within) {
+  opacity: 0.9;
+}
+
+/* Sophisticated animations */
+.theme-royale * {
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

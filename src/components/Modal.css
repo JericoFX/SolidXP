@@ -1,0 +1,72 @@
+/* Modal Overlay */
+.xp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.xp-modal-overlay-transparent {
+  background: transparent;
+}
+
+.xp-modal-centered {
+  align-items: center;
+}
+
+/* Modal Window */
+.xp-modal {
+  min-width: 300px;
+  max-width: 90vw;
+  max-height: 90vh;
+  outline: none;
+  display: block;
+}
+
+/* Override window styling for modals */
+.xp-modal .window {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-modal .window-body {
+  flex: 1;
+  overflow: auto;
+  max-height: calc(90vh - 40px); /* Account for title bar */
+}
+
+/* Animation */
+.xp-modal-overlay {
+  animation: xp-modal-fade-in 0.15s ease-out;
+}
+
+.xp-modal {
+  animation: xp-modal-scale-in 0.15s ease-out;
+}
+
+@keyframes xp-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes xp-modal-scale-in {
+  from { 
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* No theme overrides needed - Modal uses Window component which handles theming */

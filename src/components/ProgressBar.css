@@ -2,3 +2,24 @@
   from { background-position: 0 0; }
   to { background-position: 16px 0; }
 }
+
+/* Animación para modo indeterminado con 3 bloques */
+@keyframes xp-progress-indeterminate {
+  0% { 
+    background-position: -48px 0, -32px 0, -16px 0; 
+  }
+  100% { 
+    background-position: 300px 0, 316px 0, 332px 0; 
+  }
+}
+
+/* Mejoras para bloques definidos del progress bar XP */
+.xp-progress-bar-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.xp-progress-bar-fill {
+  position: relative;
+  background-clip: content-box !important;
+}
