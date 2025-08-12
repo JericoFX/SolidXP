@@ -1,0 +1,188 @@
+/* 
+ * Zune Theme for SolidXP
+ * Dark theme with orange accents inspired by Windows XP Zune theme
+ */
+
+.theme-zune {
+  /* Variables para el tema Zune */
+  --zune-bg: #1a1a1a;
+  --zune-surface: #2d2d2d;
+  --zune-accent: #ff6600;
+  --zune-accent-hover: #ff8833;
+  --zune-text: #ffffff;
+  --zune-text-secondary: #cccccc;
+  --zune-border: #444444;
+  --zune-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Window styling para tema Zune */
+.theme-zune .window {
+  background: var(--zune-surface);
+  box-shadow: inset -1px -1px var(--zune-shadow), inset 1px 1px #555, 
+              inset -2px -2px #333, inset 2px 2px #555;
+  color: var(--zune-text);
+}
+
+.theme-zune .title-bar {
+  background: linear-gradient(90deg, #ff6600 0%, #ff8833 50%, #ff6600 100%);
+  color: #000000;
+}
+
+.theme-zune .title-bar-text {
+  color: #000000;
+  font-weight: bold;
+}
+
+.theme-zune .window-body {
+  background: var(--zune-surface);
+  color: var(--zune-text);
+}
+
+/* Button styling para tema Zune */
+.theme-zune button {
+  background: var(--zune-surface);
+  color: var(--zune-text);
+  border: 1px solid var(--zune-border);
+  box-shadow: inset -1px -1px #111, inset 1px 1px #555, 
+              inset -2px -2px #222, inset 2px 2px #444;
+}
+
+.theme-zune button:hover {
+  background: #3a3a3a;
+}
+
+.theme-zune button:active {
+  box-shadow: inset -1px -1px #555, inset 1px 1px #111, 
+              inset -2px -2px #444, inset 2px 2px #222;
+}
+
+/* Form elements para tema Zune */
+.theme-zune input[type="text"],
+.theme-zune input[type="email"],
+.theme-zune input[type="password"],
+.theme-zune textarea,
+.theme-zune select {
+  background: #1a1a1a;
+  color: var(--zune-text);
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune input:focus,
+.theme-zune textarea:focus,
+.theme-zune select:focus {
+  background: #222;
+  border-color: var(--zune-accent);
+  box-shadow: 0 0 3px var(--zune-accent);
+}
+
+/* Progress bar para tema Zune */
+.theme-zune .xp-progress-bar-container {
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+}
+
+.theme-zune .xp-progress-bar-fill {
+  background: linear-gradient(to bottom, var(--zune-accent), var(--zune-accent-hover));
+}
+
+.theme-zune .xp-progress-bar-fill.animated {
+  background: linear-gradient(
+    -45deg,
+    var(--zune-accent) 25%,
+    var(--zune-accent-hover) 25%,
+    var(--zune-accent-hover) 50%,
+    var(--zune-accent) 50%,
+    var(--zune-accent) 75%,
+    var(--zune-accent-hover) 75%
+  );
+}
+
+/* Tabs para tema Zune */
+.theme-zune menu[role="tablist"] button {
+  background: var(--zune-surface);
+  color: var(--zune-text-secondary);
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.theme-zune menu[role="tablist"] button:hover {
+  background: #3a3a3a;
+  color: var(--zune-text);
+}
+
+.theme-zune menu[role="tablist"] button[aria-selected="true"] {
+  background: var(--zune-surface);
+  color: var(--zune-text);
+  border-bottom: 2px solid var(--zune-accent);
+}
+
+.theme-zune [role="tabpanel"] {
+  background: var(--zune-surface);
+  color: var(--zune-text);
+  border: 1px solid var(--zune-border);
+}
+
+/* Tree view para tema Zune */
+.theme-zune ul.tree-view {
+  background: #1a1a1a;
+  color: var(--zune-text);
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune ul.tree-view a {
+  color: var(--zune-text-secondary);
+}
+
+.theme-zune ul.tree-view a:hover,
+.theme-zune ul.tree-view a:focus {
+  background: var(--zune-accent);
+  color: #000;
+}
+
+/* Status bar para tema Zune */
+.theme-zune .status-bar {
+  background: var(--zune-surface);
+  border-top: 1px solid var(--zune-border);
+}
+
+.theme-zune .status-bar-field {
+  background: #1a1a1a;
+  color: var(--zune-text-secondary);
+  border: 1px inset var(--zune-border);
+}
+
+/* Checkboxes y radios para tema Zune */
+.theme-zune input[type="checkbox"] + label::before {
+  background: #1a1a1a;
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune input[type="checkbox"]:checked + label::after {
+  filter: brightness(0) invert(1);
+}
+
+.theme-zune input[type="radio"] + label::before {
+  background: #1a1a1a;
+  border: 1px solid var(--zune-border);
+}
+
+/* Sliders para tema Zune */
+.theme-zune input[type="range"]::-webkit-slider-track {
+  background: #1a1a1a;
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune input[type="range"]::-webkit-slider-thumb {
+  background: var(--zune-accent);
+  border: 1px solid var(--zune-accent-hover);
+}
+
+.theme-zune input[type="range"]::-moz-range-track {
+  background: #1a1a1a;
+  border: 1px solid var(--zune-border);
+}
+
+.theme-zune input[type="range"]::-moz-range-thumb {
+  background: var(--zune-accent);
+  border: 1px solid var(--zune-accent-hover);
+}

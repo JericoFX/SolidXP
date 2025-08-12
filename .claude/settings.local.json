@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:botoxparty.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:windows-xp-css.vercel.app)",
+      "Bash(mkdir:*)",
+      "Bash(bun install:*)",
+      "Bash(bun info:*)",
+      "Bash(bun run:*)",
+      "Bash(bunx tsc:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolidXP - Windows XP UI Components</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'MS Sans Serif', sans-serif;
+      background: #c3d3d7;
+      min-height: 100vh;
+    }
+    .playground-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .component-section {
+      margin-bottom: 40px;
+    }
+    .component-title {
+      background: #0051af;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 0 20px 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .demo-window {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/playground.tsx"></script>
+</body>
+</html>
