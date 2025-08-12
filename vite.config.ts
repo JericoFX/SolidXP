@@ -3,42 +3,33 @@ import solid from 'vite-plugin-solid';
 import path from 'path';
 
 const isLib = process.env.BUILD_MODE === 'lib';
-const repoName = process.env.npm_package_name || 'solidxp';
 
 export default defineConfig({
   plugins: [solid()],
-  base: isLib ? '/' : `/${repoName}/`,
+  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
   build: isLib ? {
-    // Library build configuration
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'SolidXP',
-      fileName: (format) => `index.${format}.js`,
       formats: ['es', 'cjs'],
+      fileName: (format) => `index.${format === 'es' ? 'esm' : format}.js`
     },
     rollupOptions: {
-      external: ['solid-js'],
+      external: ['solid-js', 'xp.css'],
       output: {
         globals: {
           'solid-js': 'SolidJS',
-        },
-      },
+          'xp.css': 'XPCSS'
+        }
+      }
     },
-    outDir: 'dist',
-    sourcemap: true,
+    copyPublicDir: false
   } : {
-    // Playground build configuration
-    outDir: 'playground-dist',
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-      },
-    },
-    sourcemap: false,
+    outDir: 'playground-dist'
   },
 });

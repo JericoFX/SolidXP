@@ -41,7 +41,7 @@ export function ProgressBar(props: ProgressBarProps) {
   // Constants for block dimensions (moved outside function to be accessible in createEffect)
   const blockWidth = 16; // ancho total de cada bloque
   const solidWidth = 12; // parte sólida del bloque
-  const gapWidth = 4; // separación transparente
+  // const gapWidth = 4; // separación transparente - not used currently
 
   const progressFillStyle = () => {
 

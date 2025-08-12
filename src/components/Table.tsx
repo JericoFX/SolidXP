@@ -1,9 +1,9 @@
 import { mergeProps, splitProps, For, createSignal, createMemo } from 'solid-js';
 import { cn } from '../utils/cn';
-import type { TableProps, TableColumn, TableRow } from '../types';
+import type { TableProps, TableColumn } from '../types';
 import "./Table.css";
 
-export function Table<T = any>(props: TableProps<T>) {
+export function Table<T = Record<string, unknown>>(props: TableProps<T>) {
   const merged = mergeProps({
     striped: false,
     bordered: true,
@@ -49,8 +49,8 @@ export function Table<T = any>(props: TableProps<T>) {
     if (!column) return local.data;
 
     return [...local.data].sort((a, b) => {
-      const aValue = column.accessor ? column.accessor(a) : a[column.key];
-      const bValue = column.accessor ? column.accessor(b) : b[column.key];
+      const aValue = column.accessor ? column.accessor(a) : (a as Record<string, unknown>)[column.key];
+      const bValue = column.accessor ? column.accessor(b) : (b as Record<string, unknown>)[column.key];
       
       let comparison = 0;
       if (aValue < bValue) comparison = -1;
@@ -103,12 +103,12 @@ export function Table<T = any>(props: TableProps<T>) {
     event.stopPropagation();
     
     if (local.onCellClick) {
-      const value = column.accessor ? column.accessor(row) : row[column.key];
+      const value = column.accessor ? column.accessor(row) : (row as Record<string, unknown>)[column.key];
       local.onCellClick(row, column, value, event);
     }
   };
 
-  const isRowSelected = (row: T, index: number) => {
+  const isRowSelected = (row: T, _index: number) => {
     if (!local.selectedRows) return false;
     return local.selectedRows.some(selectedRow => 
       selectedRow === row || (typeof selectedRow === 'object' && 
@@ -221,7 +221,7 @@ export function Table<T = any>(props: TableProps<T>) {
                               ? column.render(row, index())
                               : column.accessor 
                               ? column.accessor(row)
-                              : row[column.key]
+                              : (row as Record<string, unknown>)[column.key]
                             }
                           </td>
                         )}
@@ -296,7 +296,7 @@ export function Table<T = any>(props: TableProps<T>) {
                           ? column.render(row, index())
                           : column.accessor 
                           ? column.accessor(row)
-                          : row[column.key]
+                          : (row as Record<string, unknown>)[column.key]
                         }
                       </td>
                     )}

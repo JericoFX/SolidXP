@@ -1,5 +1,5 @@
 import { render } from 'solid-js/web';
-import { createSignal, onMount } from 'solid-js';
+import { createSignal, onMount, Show } from 'solid-js';
 import { useTheme, applyTheme, type Theme } from './utils/themes';
 import {
   Window,
@@ -8,8 +8,6 @@ import {
   Radio,
   TextBox,
   Select,
-  Tabs,
-  Tab,
   TabContainer,
   ProgressBar,
   Slider,
@@ -216,7 +214,7 @@ function App() {
     },
   ];
 
-  const [currentTheme, setTheme] = useTheme();
+  const [currentTheme] = useTheme();
 
   const handleThemeChange = (theme: Theme) => {
     applyTheme(theme);

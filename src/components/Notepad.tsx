@@ -91,12 +91,12 @@ export function Notepad(props: NotepadProps) {
     }
   };
 
-  // Focus methods
-  const focus = () => textareaRef?.focus();
-  const selectAll = () => {
-    textareaRef?.focus();
-    textareaRef?.select();
-  };
+  // Focus methods - not used but exposed for potential API
+  // const focus = () => textareaRef?.focus();
+  // const selectAll = () => {
+  //   textareaRef?.focus();
+  //   textareaRef?.select();
+  // };
 
   return (
     <div

@@ -26,7 +26,7 @@ export function Modal(props: ModalProps) {
     'class'
   ]);
 
-  let dialogRef: HTMLDivElement;
+  let dialogRef: HTMLDivElement | undefined;
 
   // Handle escape key
   createEffect(() => {
@@ -43,8 +43,8 @@ export function Modal(props: ModalProps) {
 
   // Focus management
   createEffect(() => {
-    if (local.open && dialogRef) {
-      dialogRef.focus();
+    if (local.open) {
+      dialogRef?.focus();
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';

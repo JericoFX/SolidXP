@@ -88,7 +88,7 @@ export function TreeView(props: TreeViewProps) {
   const containerStyle = () => ({
     width: local.width || '100%',
     height: local.height || 'auto',
-    ...(local.height && { 'overflow-y': 'auto' })
+    ...(local.height && { 'overflow-y': 'auto' as const })
   });
 
   return (
